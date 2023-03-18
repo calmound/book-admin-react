@@ -1,0 +1,28 @@
+.container {
+  height: 100%;
+}
+
+.header {
+  font-size: 20px;
+  font-weight: bold;
+  border-bottom: 1px solid #ebebeb;
+  background-color: #fff;
+}
+
+.sider {
+  background: #fff !important;
+  position: fixed;
+  left: 0;
+}
+
+.menu {
+  height: 100%;
+}
+
+.content {
+  padding: 32px;
+}
+
+.user {
+  float: right;
+}

@@ -1,0 +1,23 @@
+.title {
+  font-size: 24px;
+  margin-left: 32px;
+  font-weight: bold;
+}
+
+.form {
+  width: 600px;
+  padding: 32px;
+}
+
+.coverWrap {
+  width: 100%;
+}
+
+.textarea {
+  height: 150px !important;
+}
+
+.btn {
+  margin: 0 auto;
+  display: block;
+}

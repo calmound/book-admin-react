@@ -1,0 +1,26 @@
+.main {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form {
+  height: 300px;
+  width: 320px;
+  padding: 20px;
+}
+
+.title {
+  font-size: 30px;
+  text-align: center;
+  margin: 20px;
+}
+
+.btn {
+  width: 45%;
+}
+
+.loginBtn {
+  margin-right: 10%;
+}
