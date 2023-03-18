@@ -7,6 +7,12 @@
   font-weight: bold;
   border-bottom: 1px solid #ebebeb;
   background-color: #fff;
+  color: #487bd7;
+}
+
+.logo {
+  margin-right: 8px;
+  margin-top: -6px;
 }
 
 .sider {

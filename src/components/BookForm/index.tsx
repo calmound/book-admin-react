@@ -14,7 +14,7 @@ import {
 import dayjs from "dayjs";
 import "dayjs/locale/zh-cn";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import Content from "../Content";
 import styles from "./index.module.css";
@@ -27,6 +27,7 @@ const BookForm: React.FC<BookFormType> = ({ title, editData }) => {
   const [form] = Form.useForm();
   const [categoryList, setCategoryList] = useState<CategoryType[]>([]);
   const [preview, setPreview] = useState();
+  const [cover, setCover] = useState();
 
   useEffect(() => {
     getCategoryList({
@@ -45,11 +46,17 @@ const BookForm: React.FC<BookFormType> = ({ title, editData }) => {
           : undefined,
         publishAt: editData.publishAt ? dayjs(editData.publishAt) : undefined,
       };
+      setCover(editData.cover);
       form.setFieldsValue(data);
     }
   }, [editData, form]);
 
   const handleFinish = async (values: BookType) => {
+    console.log(
+      "%c [ values ]-53",
+      "font-size:13px; background:pink; color:#bf2c9f;",
+      values
+    );
     // 编辑
     if (values.publishAt) {
       values.publishAt = dayjs(values.publishAt).valueOf();
@@ -67,6 +74,14 @@ const BookForm: React.FC<BookFormType> = ({ title, editData }) => {
   const handlePreview = () => {
     setPreview(form.getFieldValue("cover"));
   };
+
+  {
+    categoryList?.map((category) => (
+      <Option value={category._id} key={category._id}>
+        {category.name}
+      </Option>
+    ));
+  }
 
   return (
     <>
@@ -127,7 +142,9 @@ const BookForm: React.FC<BookFormType> = ({ title, editData }) => {
             <Input.Group compact>
               <Input
                 style={{ width: "calc(100% - 65px)" }}
+                value={cover}
                 onChange={(e) => {
+                  setCover(e.target.value);
                   form.setFieldValue("cover", e.target.value);
                 }}
               />
@@ -138,7 +155,7 @@ const BookForm: React.FC<BookFormType> = ({ title, editData }) => {
           </Form.Item>
           {preview && (
             <Form.Item label=" " colon={false}>
-              <Image width={200} alt="封面" src={preview} />
+              <Image width={200} height={200} alt="封面" src={preview} />
             </Form.Item>
           )}
           <Form.Item
@@ -152,7 +169,7 @@ const BookForm: React.FC<BookFormType> = ({ title, editData }) => {
             <InputNumber />
           </Form.Item>
           <Form.Item label="描述" name="description">
-            <TextArea maxLength={30} className={styles.textarea} />
+            <TextArea className={styles.textarea} />
           </Form.Item>
           <Form.Item label=" " colon={false}>
             <Button
@@ -161,7 +178,7 @@ const BookForm: React.FC<BookFormType> = ({ title, editData }) => {
               size="large"
               className={styles.btn}
             >
-              创建
+              {editData?._id ? "更新" : "创建"}
             </Button>
           </Form.Item>
         </Form>

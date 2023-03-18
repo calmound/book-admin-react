@@ -15,11 +15,7 @@ const Spin = dynamic(() => import("antd/es/spin"), {
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
-  console.log(
-    "%c [ Component ]-16",
-    "font-size:13px; background:pink; color:#bf2c9f;",
-    router
-  );
+
   const [load, setLoad] = useState(false);
 
   useEffect(() => {

@@ -3,6 +3,12 @@ import { USER_ROLE } from "@/constants";
 import { useCurrentUser } from "@/utils/hoos";
 import { DownOutlined } from "@ant-design/icons";
 import {
+  ProfileOutlined,
+  SnippetsOutlined,
+  SolutionOutlined,
+  UserOutlined,
+} from "@ant-design/icons";
+import {
   Layout as AntdLayout,
   Dropdown,
   Menu,
@@ -11,6 +17,7 @@ import {
   message,
 } from "antd";
 import Head from "next/head";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { PropsWithChildren, ReactElement, useMemo } from "react";
@@ -24,7 +31,7 @@ const ITEMS = [
     label: "图书管理",
     key: "book",
     role: USER_ROLE.USER,
-    // icon: <MailOutlined />,
+    icon: <SnippetsOutlined />,
     children: [
       {
         label: "图书列表",
@@ -42,7 +49,7 @@ const ITEMS = [
     label: "借阅管理",
     key: "borrow",
     role: USER_ROLE.USER,
-    // icon: <AppstoreOutlined />,
+    icon: <SolutionOutlined />,
     children: [
       {
         label: "借阅列表",
@@ -57,15 +64,15 @@ const ITEMS = [
     ],
   },
   {
-    label: "图书类别管理",
+    label: "分类管理",
     key: "/category",
-    // icon: <AppstoreOutlined />,
+    icon: <ProfileOutlined />,
     role: USER_ROLE.ADMIN,
   },
   {
     label: "用户管理",
     key: "user",
-    // icon: <AppstoreOutlined />,
+    icon: <UserOutlined />,
     role: USER_ROLE.ADMIN,
     children: [
       {
@@ -143,6 +150,13 @@ const Layout: React.FC<
       <main className={styles.main}>
         <AntdLayout className={styles.container}>
           <Header className={styles.header}>
+            <Image
+              src="/logo.svg"
+              width={30}
+              height={30}
+              alt="logo"
+              className={styles.logo}
+            />
             图书管理系统
             <span className={styles.user}>
               <Dropdown menu={{ items: USER_ITEMS }} placement="bottom">

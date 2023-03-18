@@ -286,6 +286,7 @@ export default function Borrow() {
           dataSource={list}
           columns={columns}
           onChange={handleTableChange}
+          scroll={{ x: 1300 }}
           pagination={{
             ...pagination,
             total: total,
