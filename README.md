@@ -53,7 +53,7 @@ book-admin 系统前端实现了 **react** 版本，后端实现了 **express** 
    destination: `https://mock.apifox.cn/m1/2398938-0-default/api/:path*`,
    ```
 
-4. 若期连接 nodejs 的本地服务，打开根目录下的 next.config.js 文件，确认以下代码不在注释中
+4. 若期望连接 nodejs 的本地服务，打开根目录下的 next.config.js 文件，确认以下代码不在注释中
 
    ```javascript
    destination: `http://localhost:3001/api/:path*`,
@@ -68,3 +68,4 @@ book-admin 系统前端实现了 **react** 版本，后端实现了 **express** 
 6. 访问 localhost:3000/login
 7. 看到如下页面，表明启动成功
    ![](https://raw.githubusercontent.com/calmound/book-admin-react/master/screenshot/2.png)
+8. 账号，管理员（账号：admin,密码：admin），用户（账号：user，密码：user）
