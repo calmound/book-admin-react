@@ -9,7 +9,7 @@ import { Layout as AntdLayout, Breadcrumb, Dropdown, Menu } from "antd";
 import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { PropsWithChildren } from "react";
 
 import styles from "./index.module.css";
 
@@ -96,9 +96,10 @@ const USER_ITEMS: MenuProps["items"] = [
   },
 ];
 
-export function Layout({ children }) {
+// export function Layout({ children }: { children: ReactNode }) {
+const Layout: React.FC<PropsWithChildren> = ({ children }) => {
   const router = useRouter();
-  const handleMenuClick = ({ key }) => {
+  const handleMenuClick: MenuProps["onClick"] = ({ key }) => {
     router.push(key);
   };
   return (
@@ -150,4 +151,4 @@ export function Layout({ children }) {
       </main>
     </>
   );
-}
+};
