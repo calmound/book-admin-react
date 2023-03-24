@@ -1,0 +1,31 @@
+.header {
+  background-color: #fff;
+  font-size: 20px;
+  color: #487bd7;
+  font-weight: bold;
+  margin-right: 8px;
+}
+
+.logo {
+  margin-right: 8px;
+  margin-top: -4px;
+}
+
+.user {
+  float: right;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.sectionInner {
+  height: calc(100vh - 64px);
+}
+
+.sectionContent {
+  padding: 32px;
+}
+.content {
+  background-color: #fff;
+  border-radius: 16px;
+  padding: 24px;
+}
