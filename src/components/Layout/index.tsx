@@ -97,7 +97,7 @@ const USER_ITEMS: MenuProps["items"] = [
 ];
 
 // export function Layout({ children }: { children: ReactNode }) {
-const Layout: React.FC<PropsWithChildren> = ({ children }) => {
+export const Layout: React.FC<PropsWithChildren> = ({ children }) => {
   const router = useRouter();
   const handleMenuClick: MenuProps["onClick"] = ({ key }) => {
     router.push(key);
