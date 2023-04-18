@@ -15,33 +15,6 @@ import styles from "./index.module.css";
 
 const { Header, Content, Sider } = AntdLayout;
 
-const items1: MenuProps["items"] = ["1", "2", "3"].map((key) => ({
-  key,
-  label: `nav ${key}`,
-}));
-
-const items2: MenuProps["items"] = [
-  UserOutlined,
-  LaptopOutlined,
-  NotificationOutlined,
-].map((icon, index) => {
-  const key = String(index + 1);
-
-  return {
-    key: `sub${key}`,
-    icon: React.createElement(icon),
-    label: `subnav ${key}`,
-
-    children: new Array(4).fill(null).map((_, j) => {
-      const subKey = index * 4 + j + 1;
-      return {
-        key: subKey,
-        label: `option${subKey}`,
-      };
-    }),
-  };
-});
-
 const ITEMS = [
   {
     // icon: React.createElement(icon),
@@ -102,6 +75,14 @@ export const Layout: React.FC<PropsWithChildren> = ({ children }) => {
   const handleMenuClick: MenuProps["onClick"] = ({ key }) => {
     router.push(key);
   };
+
+  console.log(
+    "%c [ router ]-80",
+    "font-size:13px; background:pink; color:#bf2c9f;",
+    router
+  );
+  const activeMenu = router.pathname;
+
   return (
     <>
       <Head>
@@ -138,6 +119,7 @@ export const Layout: React.FC<PropsWithChildren> = ({ children }) => {
                 mode="inline"
                 defaultSelectedKeys={["/book"]}
                 defaultOpenKeys={["book"]}
+                selectedKeys={[activeMenu]}
                 style={{ height: "100%", borderRight: 0 }}
                 items={ITEMS}
                 onClick={handleMenuClick}

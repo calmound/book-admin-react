@@ -1,5 +1,6 @@
 import { bookAdd } from "@/api/book";
-import { BookType } from "@/type";
+import { getCategoryList } from "@/api/category";
+import { BookType, CategoryType } from "@/type";
 import {
   Button,
   DatePicker,
@@ -14,14 +15,16 @@ import dayjs from "dayjs";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 
+import Content from "../Content";
 import styles from "./index.module.css";
 
 const { RangePicker } = DatePicker;
 const { TextArea } = Input;
 
-export default function BookForm() {
+export default function BookForm({ title }: { title: string }) {
   const [preview, setPreview] = useState("");
   const [form] = Form.useForm();
+  const [categoryList, setCategoryList] = useState<CategoryType[]>([]);
   const router = useRouter();
 
   const handleFinish = async (values: BookType) => {
@@ -33,11 +36,16 @@ export default function BookForm() {
     router.push("/book");
   };
 
+  useEffect(() => {
+    getCategoryList({ all: true }).then((res) => {
+      setCategoryList(res.data);
+    });
+  }, []);
+
   return (
-    <>
+    <Content title={title}>
       <Form
         form={form}
-        className={styles.form}
         labelCol={{ span: 4 }}
         wrapperCol={{ span: 20 }}
         layout="horizontal"
@@ -77,9 +85,13 @@ export default function BookForm() {
             },
           ]}
         >
-          <Select placeholder="请选择">
-            <Select.Option value="demo">Demo</Select.Option>
-          </Select>
+          <Select
+            placeholder="请选择"
+            options={categoryList.map((item) => ({
+              label: item.name,
+              value: item._id,
+            }))}
+          ></Select>
         </Form.Item>
         <Form.Item label="封面" name="cover">
           <Input.Group compact>
@@ -125,6 +137,6 @@ export default function BookForm() {
           </Button>
         </Form.Item>
       </Form>
-    </>
+    </Content>
   );
 }
