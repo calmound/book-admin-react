@@ -4,6 +4,7 @@ export interface BookQueryType {
   category?: number;
   current?: number;
   pageSize?: number;
+  all?: boolean; // 获取所有数据
 }
 
 export interface BookType {
@@ -14,4 +15,5 @@ export interface BookType {
   publishAt: number;
   stock: number;
   description: string;
+  _id?: string;
 }
