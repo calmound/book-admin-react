@@ -1,5 +1,3 @@
-import { CategoryQueryType } from "@/type";
-
 export interface CategoryQueryType {
   name?: string;
   level?: number;
