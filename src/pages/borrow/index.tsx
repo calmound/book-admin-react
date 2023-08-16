@@ -156,14 +156,16 @@ export default function Borrow() {
       render: (_: any, row: any) => {
         return (
           <Space>
-            <Button
-              type="link"
-              onClick={() => {
-                handleBorrowEdit(row._id);
-              }}
-            >
-              编辑
-            </Button>
+            {row.status === "on" && (
+              <Button
+                type="link"
+                onClick={() => {
+                  handleBorrowEdit(row._id);
+                }}
+              >
+                归还
+              </Button>
+            )}
             <Button
               type="link"
               danger
