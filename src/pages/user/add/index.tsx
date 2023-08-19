@@ -1,5 +1,5 @@
-import BookForm from "@/components/BookForm";
+import UserForm from "@/components/UserForm";
 
 export default function Home() {
-  return <BookForm title="图书添加" />;
+  return <UserForm title="图书添加" />;
 }

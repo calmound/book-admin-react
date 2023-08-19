@@ -1,13 +1,15 @@
+import { logout } from "@/api/user";
 import {
   LaptopOutlined,
   NotificationOutlined,
   UserOutlined,
 } from "@ant-design/icons";
 import { DownOutlined } from "@ant-design/icons";
-import { MenuProps, Space } from "antd";
+import { MenuProps, Space, message } from "antd";
 import { Layout as AntdLayout, Breadcrumb, Dropdown, Menu } from "antd";
 import Head from "next/head";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { PropsWithChildren } from "react";
 
@@ -58,17 +60,6 @@ const ITEMS = [
   },
 ];
 
-const USER_ITEMS: MenuProps["items"] = [
-  {
-    label: "用户中心",
-    key: "1",
-  },
-  {
-    label: "登出",
-    key: "2",
-  },
-];
-
 // export function Layout({ children }: { children: ReactNode }) {
 export const Layout: React.FC<PropsWithChildren> = ({ children }) => {
   const router = useRouter();
@@ -76,11 +67,27 @@ export const Layout: React.FC<PropsWithChildren> = ({ children }) => {
     router.push(key);
   };
 
-  console.log(
-    "%c [ router ]-80",
-    "font-size:13px; background:pink; color:#bf2c9f;",
-    router
-  );
+  const USER_ITEMS: MenuProps["items"] = [
+    {
+      label: <Link href="/user/edit/id">用户中心</Link>,
+      key: "1",
+    },
+    {
+      label: (
+        <span
+          onClick={async () => {
+            await logout();
+            message.success("登出成功");
+            router.push("/login");
+          }}
+        >
+          登出
+        </span>
+      ),
+      key: "2",
+    },
+  ];
+
   const activeMenu = router.pathname;
 
   return (
